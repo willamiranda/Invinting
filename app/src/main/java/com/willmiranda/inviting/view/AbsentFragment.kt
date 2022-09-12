@@ -1,4 +1,4 @@
-package com.willmiranda.inviting.ui
+package com.willmiranda.inviting.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.willmiranda.inviting.databinding.FragmentAbsentBinding
+import com.willmiranda.inviting.viewmodel.AbsentViewModel
 
 
 class AbsentFragment : Fragment() {

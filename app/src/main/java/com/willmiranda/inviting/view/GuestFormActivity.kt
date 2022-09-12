@@ -1,10 +1,12 @@
-package com.willmiranda.inviting
+package com.willmiranda.inviting.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import com.willmiranda.inviting.R
 import com.willmiranda.inviting.databinding.ActivityGuestFormBinding
+import com.willmiranda.inviting.viewmodel.GuestFormViewModel
 
 class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
