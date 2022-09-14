@@ -8,25 +8,36 @@ import androidx.lifecycle.ViewModel
 import com.willmiranda.inviting.model.GuestModel
 import com.willmiranda.inviting.repository.GuestRepository
 
-class GuestFormViewModel(application: Application): AndroidViewModel(application) {
+class GuestFormViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = GuestRepository.getInstance(application)
+    private val repository = GuestRepository(application)
 
     private val guestModel = MutableLiveData<GuestModel>()
     val guest: LiveData<GuestModel> = guestModel
 
-    fun save(guest: GuestModel){
+    private val _saveGuest = MutableLiveData<String>()
+    val saveGuest: LiveData<String> = _saveGuest
 
-        if(guest.id == 0) {
-            repository.insert(guest)
-        }else{
-            repository.update(guest)
+    fun save(guest: GuestModel) {
+
+        if (guest.id == 0) {
+            if (repository.insert(guest)) {
+                _saveGuest.value = "Inserção com sucesso"
+            } else {
+                _saveGuest.value = "Falha"
+            }
+        } else {
+            if (repository.update(guest)) {
+                _saveGuest.value = "Atualização com sucesso"
+            } else {
+                _saveGuest.value = "Falha"
+            }
         }
     }
 
 
-    fun get(id: Int){
-       guestModel.value = repository.get(id)
+    fun get(id: Int) {
+        guestModel.value = repository.get(id)
     }
 
 }
